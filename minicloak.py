@@ -227,6 +227,11 @@ User Management Interface
 """
 
 
+@app.route("/")
+def index():
+    return redirect(url_for("user_management"))
+
+
 @app.route("/users", methods=["GET"])
 def user_management():
     """
