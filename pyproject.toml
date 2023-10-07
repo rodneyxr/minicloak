@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "minicloak"
+version = "0.1.0"
+description = ""
+authors = ["Rodney Rodriguez <anon@email.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^3.0.0"
+flask-sqlalchemy = "^3.1.1"
+pyjwt = "^2.8.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

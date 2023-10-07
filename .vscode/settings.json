@@ -1,0 +1,14 @@
+{
+    // Enable type checking
+    "python.analysis.typeCheckingMode": "basic",
+    // Default python formatter
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    // Format on save
+    "editor.formatOnSave": true,
+    // Organize imports on save
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+}

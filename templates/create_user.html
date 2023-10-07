@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+    <link rel="stylesheet" href="/static/css/bootstrap-5.3.2.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Create User</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">User Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="create-user-form" method="POST" action="/api/users">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" id="username" name="username" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="attributes" class="form-label">Attributes (comma-separated):</label>
+                                <input type="text" id="attributes" name="attributes" class="form-control" placeholder="key=value,key=value,...">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create User</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6">
+                <a href="/users" class="btn btn-secondary btn-block">Back to User Management</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/bootstrap-5.3.2.bundle.min.js"></script>
+    <script>
+        // Intercept the form submission event
+        document.getElementById("create-user-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form values
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var attributesInput = document.getElementById("attributes").value;
+            var attributesList = attributesInput.split(",").map(function(attribute) {
+                return attribute.trim();
+            });
+
+            // Create JSON object from form values
+            var user = {
+                "username": username,
+                "password": password,
+                "attributes": attributesList
+            };
+
+            // Send a JSON POST request
+            fetch("/api/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            })
+            .then(function(response) {
+                if (response.status === 200) {
+                    // Redirect or display a success message
+                    window.location.href = "/users"; // Redirect to the user management page
+                } else {
+                    // Handle errors
+                    alert("Error creating user.");
+                }
+            })
+            .catch(function(error) {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>

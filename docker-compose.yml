@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  minicloak:
+    build: .
+    image: rodneyxr/minicloak:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./instance:/app/instance
